@@ -1,0 +1,246 @@
+* {
+    margin: 0; /* remove margem padrão de todos os elementos */
+    padding: 0; /* remove espaçamento interno padrão */
+    box-sizing: border-box; /* inclui border/padding na largura/altura */
+}
+
+:root {
+    --primary-color: #e50914; /* cor principal da marca/hover (Netflix red) */
+    --secondary-color: #141414; /* cor secundária de fundo escuro */
+    --text-color: #ffffff; /* cor de texto padrão */
+    --background-color: #141414; /* cor de fundo base (escura) */
+    --hover-color: #f5b800; /* cor de destaque em hover */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* fonte legível e moderna */
+    background-color: var(--background-color); /* fundo do site */
+    color: var(--text-color); /* cor do texto do site */
+    min-height: 100vh; /* garante altura mínima da tela inteira */
+}
+
+main {
+    display: flex; /* layout flexível para centralizar conteúdo */
+    flex-direction: column; /* organiza elementos verticalmente */
+    align-items: center; /* centraliza horizontalmente */
+    justify-content: center; /* centraliza verticalmente */
+    min-height: 100vh; /* ocupa altura total da janela */
+    padding: 40px 20px; /* espaço interno em torno do conteúdo */
+    background: linear-gradient(135deg, var(--background-color) 0%, #1a1a1a 100%); /* gradiente Netflix-style atualizado via variável */
+}
+
+header {
+    text-align: center; /* alinha texto ao centro */
+    margin-bottom: 60px; /* espaço abaixo do header */
+    animation: fadeIn 0.8s ease-in; /* animação de entrada suave */
+    position: relative; /* permite posicionar botão no canto */
+}
+
+h1 {
+    font-size: 3.5rem; /* tamanho da fonte do título */
+    font-weight: 700; /* peso da fonte bem forte */
+    margin-bottom: 20px; /* espaço inferior do título */
+    color: var(--text-color); /* cor do título de acordo com o tema */
+    background: none;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: initial;
+    background-clip: initial;
+    letter-spacing: 2px; /* espaçamento entre letras */
+}
+
+.profiles {
+    display: grid; /* layout em grade */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* colunas responsivas */
+    gap: 30px; /* espaçamento entre cards */
+    max-width: 1000px; /* largura máxima do container */
+    width: 100%; /* ocupa 100% da largura disponível */
+    animation: fadeIn 1s ease-in 0.3s backwards; /* animação com atraso */
+    list-style: none; /* remove marcador de lista */
+    padding: 0; /* remove padding padrão da lista */
+    margin: 0; /* remove margin padrão da lista */
+}
+
+ .profile {
+    display: flex; /* perfil como flex container */
+    flex-direction: column; /* organiza conteúdo em coluna */
+    align-items: center; /* alinha itens no centro */
+    cursor: pointer; /* cursor de clique */
+    transition: transform 0.3s ease, filter 0.3s ease; /* transição suave para hover */
+}
+
+.profile:hover {
+    transform: scale(1.1); /* aumenta levemente no hover */
+    filter: brightness(1.2); /* aumenta brilho no hover */
+}
+
+figure {
+    display: flex; /* container de figura com flex */
+    flex-direction: column; /* elementos em coluna */
+    align-items: center; /* centraliza imagem e legenda */
+    gap: 15px; /* espaço entre imagem e legenda */
+    width: 100%; /* ocupa largura do pai */
+}
+
+figure img {
+    width: 180px; /* largura fixa da imagem */
+    height: 180px; /* altura fixa da imagem */
+    border-radius: 8px; /* cantos arredondados */
+    object-fit: cover; /* cobre a área mantendo proporção */
+    border: 3px solid transparent; /* borda transparente para efeito hover */
+    transition: all 0.3s ease; /* transição para todas as propriedades */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5); /* sombra intensa estilo Netflix */
+}
+
+ .profile:hover figure img {
+    border-color: var(--primary-color); /* borda vermelha no hover */
+    box-shadow: 0 12px 32px rgba(229, 9, 20, 0.4); /* sombra vermelha no hover */
+    transform: translateY(-5px); /* eleva imagem no hover */
+}
+
+figcaption {
+    font-size: 1.1rem; /* tamanho do texto da legenda */
+    font-weight: 600; /* peso da legenda */
+    color: var(--text-color); /* cor do texto da legenda */
+    transition: color 0.3s ease; /* transição de cor da legenda no hover */
+    text-transform: uppercase; /* transforma texto em maiúsculas */
+    letter-spacing: 1px; /* espaçamento levemente maior entre letras */
+}
+
+ .profile:hover figcaption {
+    color: var(--primary-color); /* cor da legenda no hover */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0; /* início transparente */
+        transform: translateY(20px); /* inicia levemente abaixo */
+    }
+    to {
+        opacity: 1; /* final opaco */
+        transform: translateY(0); /* posição final normal */
+    }
+}
+
+/* Responsivo para tablets */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem; /* reduz o título em tablets */
+    }
+
+    .profiles {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* adapta colunas */
+        gap: 20px; /* diminui espaçamento */
+    }
+
+    figure img {
+        width: 150px; /* reduz imagens em tablets */
+        height: 150px;
+    }
+}
+
+/* Exibir perfil em linha para telas grandes (>900px) */
+@media (min-width: 900px) {
+    .profiles {
+        grid-template-columns: repeat(4, minmax(200px, 1fr)); /* força 4 colunas */
+    }
+}
+
+/* Responsivo para mobile */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem; /* reduz ainda mais o título em mobile */
+    }
+
+    header {
+        margin-bottom: 40px; /* menos espaçamento em mobile */
+    }
+
+    .profiles {
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas em mobile */
+        gap: 15px; /* gap menor em mobile */
+        padding: 0 10px; /* padding lateral para ajuste */
+    }
+
+    figure img {
+        width: 120px; /* imagens menores no mobile */
+        height: 120px;
+    }
+
+    figcaption {
+        font-size: 0.9rem; /* legenda menor no mobile */
+    }
+}
+
+/* Tema controlado via JavaScript (classe body.light-mode) */
+body.light-mode {
+    --primary-color: #111;
+    background: none;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: initial;
+    background-clip: initial;
+    --background-color: #f1f1f1;
+    --hover-color: #e50914;
+    background-color: #f1f1f1;
+    color: #111;
+}
+
+body.light-mode main {
+    background: linear-gradient(135deg, var(--background-color) 0%, #e8e8e8 100%);
+}
+
+body.light-mode h1 {
+    color: #111;
+    background: none;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: initial;
+    background-clip: initial;
+}
+
+body.light-mode figure img {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+body.light-mode figcaption {
+    color: #111;
+}
+
+#theme-toggle {
+    border: 1px solid rgba(255, 255, 255, 0.87);
+    background: rgba(255, 255, 255, 0.15);
+    font-weight: 700;
+    font-size: 1.25rem;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+    position: absolute;
+    top: -60px; /* aumenta espaço acima do texto */
+    left: 50%;
+    transform: translateX(-50%); /* centraliza horizontalmente */
+    border-radius: 50%; /* cantos super suaves */
+}
+
+body.light-mode #theme-toggle {
+    border-color: #111;
+    background: rgba(0, 0, 0, 0.25);
+    color: #fff;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+#theme-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 9px 22px rgba(0, 0, 0, 0.35);
+}
+
+/* Reduz animações para usuários que preferem movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important; /* praticamente remove animações */
+        animation-iteration-count: 1 !important; /* evita loops */
+        transition-duration: 0.01ms !important; /* remove transições */
+    }
+}
